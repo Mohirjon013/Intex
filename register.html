@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+  </style>
+</head>
+<body class="register-body">
+  
+  <div class=" mx-auto  w-[621px] bg-white  pt-[35px] pb-[46px]  rounded-[25px]">
+    <img class="mx-auto " src="./images/intex-market.png" alt="" width="421" height="72"> 
+    <h2 class="mt-[45px] mb-[70px] font-bold text-[25px] text-[#A3A3A3] leading-[29.03px] text-center">Введите имя пользователя и пароль, чтобы получить доступ к системе.</h2>
+    <form autocomplete="off" class=" register-form text-center flex flex-col items-center">
+      <input class="w-[359px] mb-[16px] py-[12.5px] border-[#CBCBCB] border-[1px] rounded-[17px] outline-none focus:shadow-[#3F8C8E] text-center font-bold text-[25px] text-[#A3A3A3] leading-[29.03px] shadow-inputShadow" type="text" name="username" placeholder=" Новый имя " required>
+      <input class="w-[359px]  py-[12.5px] border-[#CBCBCB] border-[1px] rounded-[17px] outline-none focus:shadow-[#3F8C8E] text-center font-bold text-[25px] text-[#A3A3A3] leading-[29.03px] shadow-inputShadow" type="password" name="password" placeholder="Новый пароль" required>
+      <button class="w-[300px] mt-[35px] py-[8px] rounded-[10px] bg-[#3F8C8E]  text-center font-bold text-[25px] text-white leading-[29.03px] border-transparent hover:bg-transparent hover:text-[#3F8C8E] border-[1px] hover:border-[#3F8C8E] duration-300" type="submit">зарегистрироваться</button>
+    </form>
+  </div>
+  
+  
+  <script src="./js/Admin/register.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          },
+          boxShadow: {
+            'inputShadow': '0px 0px 7px 0px #00000040',
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
