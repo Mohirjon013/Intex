@@ -214,7 +214,7 @@ elPersonDate.textContent = loginDate.username.toUpperCase()
 let elLogoutModal = document.querySelector(".logout-modal")
 elLogoutModal.addEventListener("click", function(e){
     elModalWrapper.classList.remove("scale-0")
-    elModalWrapper.classList.add("pt-[250px]")
+    
     elModalInner.innerHTML = `
         <div >
             <h2 class = "text-[30px] font-bold text-zinc-600 text-center my-[10px]">Вы хотите покинуть сайт?</h2>
