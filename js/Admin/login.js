@@ -7,7 +7,7 @@ elLoginForm.addEventListener("submit", function(e){
         password:e.target.password.value
     }
     if(isRegistered){
-        if(date.username == isRegistered.nenewUsername && date.password == isRegistered.newPassword){
+        if(date.username == isRegistered.newUsername && date.password == isRegistered.newPassword){
             elLoginForm.lastElementChild.innerHTML = `
                 <img class ="mx-auto scale-[1.4]" src="../images/loading-img.png" alt="" width="40" >
             `  

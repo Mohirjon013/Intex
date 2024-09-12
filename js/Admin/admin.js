@@ -9,7 +9,7 @@ function handleAddProductBtnClick(){
         <form class = "add-product-form">
             <label>
                 <input class="choosen-input hidden" type="file">
-                <img class = "choosen-img mx-auto rounded-lg " src="./images/empty-img.png" alt="Choose img" width="90%" height="316">
+                <img class = "choosen-img mx-auto rounded-lg " src="./images/empty-img.png" alt="Choose img" width="70%" height="316">
             </label>
     
             <div class="flex justify-between">
@@ -126,7 +126,7 @@ function renderProducts(arr, categoryId){
             </td>
             <td class=" rounded-r-[30px]">
                 <div class="flex gap-[18px] py-[15px]">
-                    <buttom class ="hover:scale-[1.3] duration-300 cursor-pointer">
+                    <buttom onclick = "handleUpdateProduct(${item.id})" class ="hover:scale-[1.3] duration-300 cursor-pointer">
                         <img src="./images/edit-icon.svg" alt="edit icon" width="22" height="22">
                     </buttom>
                     <buttom onclick = "handleDeleteProduct(${item.id})" class =" hover:scale-[1.3] duration-300 cursor-pointer">
@@ -173,6 +173,108 @@ function handleCancelDeleteModal(){
 // delete end
 
 
+// update start
+function handleUpdateProduct(id){
+    elModalWrapper.classList.remove("scale-0")
+    const updateDate = products.find(item => item.id == id)
+    elModalInner.innerHTML = `
+        <form class = "updated-product-form">
+            <label>
+                <input class="updated-input hidden" type="file">
+                <img onerror ="imgUpdated()" class = "updated-img mx-auto rounded-lg " src="${updateDate.img ? updateDate.img : "./images/empty-img.png"}" alt="Choose img" width="70%" height="316">
+            </label>
+    
+            <div class="flex justify-between">
+                <div class="w-[45%] flex flex-col gap-[20px]">
+                    <label class="flex flex-col">
+                        <span class="text-[15px] text-[#898989] ">Категории</span>
+                        <select value = "" class = "bg-zinc-300 p-3 rounded-lg mt-2 outline-none focus:shadow focus:shadow-zinc-900" name="productCategory">
+                        <option ${updateDate.categoryId == "1" ? "selected" : ""} value ="1">Каркасные</option>
+                        <option ${updateDate.categoryId == "2" ? "selected" : ""} value ="2">Надувные</option>
+                        </select>
+                    </label>
+                    <label class="flex flex-col">
+                        <span class="text-[15px] text-[#898989] ">Стартая цена (сум) </span>
+                        <input value="${updateDate.oldPrice}" class="bg-zinc-300 p-3 rounded-lg mt-2 outline-none focus:shadow focus:shadow-zinc-900" type="text" placeholder="Стартая цена (сум) " name="oldPrice" autocomplete="off" required>
+                    </label>
+                    <label class="flex flex-col">
+                        <span class="text-[15px] text-[#898989] ">Рамка</span>
+                        <select class = "bg-zinc-300 p-3 rounded-lg mt-2 outline-none focus:shadow focus:shadow-zinc-900" name="frame">
+                        <option ${updateDate.frame == "1" ? "selected" : ""} value ="1">Металлический</option>
+                        <option ${updateDate.frame == "2" ? "selected" : ""} value ="2">Прямоугольная</option>
+                        <option ${updateDate.frame == "3" ? "selected" : ""} value ="3">Рамка призмы</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="w-[45%] flex flex-col gap-[20px]">
+                    <label class="flex flex-col ">
+                        <span class="text-[15px] text-[#898989] ">Количество</span>
+                        <input value="${updateDate.productAmout}" class="bg-zinc-300 p-3 rounded-lg mt-2 outline-none focus:shadow focus:shadow-zinc-900" type="text" placeholder="Количество" name="productAmout" autocomplete="off" required>
+                    </label>
+                    <label class="flex flex-col ">
+                        <span class="text-[15px] text-[#898989] ">Цена со скидкой (сум) </span>
+                        <input value="${updateDate.newPrice}" class="bg-zinc-300 p-3 rounded-lg mt-2 outline-none focus:shadow focus:shadow-zinc-900" type="text" placeholder="Цена со скидкой (сум) " name="newPrice" autocomplete="off" required>
+                    </label>
+                </div>
+            </div>
+    
+            <button class="add-btn w-[45%] mt-[35px] ml-[250px] py-2 rounded-[30px] bg-[#3F8C8E] font-bold text-[25px] leading-[29px] text-white ">Добавить</button>
+        </form>
+        
+    
+        
+    
+        
+    `
+    let elAddBtn = document.querySelector(".add-btn")
+    let elUpdatedForm = document.querySelector(".updated-product-form")
+    let elUpdatedImg = document.querySelector(".updated-img")
+    let elUpdatedInput = document.querySelector(".updated-input")
+    elUpdatedInput.addEventListener("change", function(e){
+        elUpdatedImg.src = URL.createObjectURL(e.target.files[0])
+        elUpdatedImg.classList.add("bg-white")
+    })
+
+    elUpdatedForm.addEventListener("submit", function(e){
+        e.preventDefault()
+        updateDate.img = elUpdatedImg.src
+        updateDate.categoryId = e.target.productCategory.value
+        updateDate.oldPrice = e.target.oldPrice.value
+        updateDate.frame = e.target.frame.value
+        updateDate.productAmout = e.target.productAmout.value
+        updateDate.newPrice = e.target.newPrice.value
+        
+        elAddBtn.innerHTML = `
+            <img class ="mx-auto scale-[1.4]" src="../images/loading-img.png" alt="" width="40" >
+        `
+
+        setTimeout(() => {
+            renderProducts(products, updateDate.categoryId)
+            localStorage.setItem("products", JSON.stringify(products))
+            elModalWrapper.classList.add("scale-0")
+            if(updateDate.categoryId == "1"){
+                elTitle1.className = "frame-item font-bold text-[35px] leading-[40px] text-[#009398] pb-[8px] border-b-[3px] border-[#009398] cursor-pointer"
+                elTitle2.className = "inflatable-item font-bold text-[35px] leading-[40px] text-[#A6A6A6] pb-[8px] border-b-[3px] border-transparent cursor-pointer"
+            }
+            else{
+                elTitle2.className = " inflatable-item font-bold text-[35px] leading-[40px] text-[#009398] pb-[8px] border-b-[3px] border-[#009398] cursor-pointer"
+                elTitle1.className = "frame-item font-bold text-[35px] leading-[40px] text-[#A6A6A6] pb-[8px] border-b-[3px] border-transparent cursor-pointer"
+            }
+            
+        }, 800);
+
+
+       
+        
+    })
+    
+}
+function imgUpdated(){
+    let elUpdatedImg = document.querySelector(".updated-img")
+    elUpdatedImg.src ="./images/empty-img.png"
+}
+// update end
+
 
 // modal start
 let elModalWrapper = document.querySelector(".modal-wrapper")
@@ -180,7 +282,7 @@ let elModalInner = document.querySelector(".modal-inner")
 
 elModalWrapper.addEventListener("click", function(e){
     if(e.target.id == "modal-wrapper") elModalWrapper.classList.add("scale-0")
-})
+    })
 
 // modal end
 
