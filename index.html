@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Login</title>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+</head>
+<body class="login-body">
+    
+    <div class="w-[620px] h-[520px] fixed inset-0 m-auto bg-white pt-[35px] pb-[46px] px-[37px] text-center rounded-[25px] shadow-[0_0px_11px_0px_#00000040]">
+        <img class="mx-auto mb-[27px]" src="./images/Intex-market.uz.svg" alt="login-img" width="420" height="70">
+        <h2 class="text-center font-bold text-[25px] leading-[100%] text-[#A3A3A3]">Введите имя пользователя и пароль, чтобы получить доступ к системе.</h2>
+
+        <form class="login-form w-[359px] mt-[75px] mx-auto">
+            <input class="w-full py-[12px] rounded-[17px] m-auto shadow-[0px_0px_7px_0px_#00000040] font-bold text-[25px] leading-[100%] text-black placeholder:text-[#A3A3A3] px-5 outline-none focus:shadow-[#3F8C8E] duration-400 border border-[#CBCBCB] text-center" type="text" name="username" placeholder="Имя пользователя" autocomplete="off" required>
+
+            <input class="w-full mt-[17px] py-[12px] rounded-[17px] m-auto shadow-[0px_0px_7px_0px_#00000040] font-bold text-[25px] leading-[100%] text-black placeholder:text-[#A3A3A3] px-5 outline-none focus:shadow-[#3F8C8E] duration-400 border border-[#CBCBCB] text-center" type="password" name="password" placeholder="Пароль" autocomplete="off" required>
+            <a class="mt-[20px] block font-bold text-[20px] leading-[100%] text-[#3F8C8E]" href="./register.html">Forgot password</a>
+            <button class="w-[237px] py-[8px] mt-[20px] bg-[#3F8C8E] rounded-[10px] font-bold text-[25px] leading-[100%] text-white shadow-[0px_4px_10px_0px_#00000040] border-[3px] border-transparent cursor-pointer hover:text-[#3F8C8E] hover:border-[#3F8C8E] hover:bg-transparent duration-400" type="submit">Войти</button>
+        </form>
+
+    </div>
+
+    <script src="./js/Admin/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</body>
+</html>
+
