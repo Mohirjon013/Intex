@@ -1,15 +1,42 @@
+@font-face {
+  font-display: swap; 
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/source-sans-3-v19-latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap; 
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/source-sans-3-v19-latin-700.woff2') format('woff2');
+}
 
+body{
+  font-family: 'Source Sans 3';
+}
 .login-body{
-    height: 100vh;
-    background-image: url(./../images/login-bg.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
+  height: 100vh;
+  background-image: url(./../images/login-bg.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .register-body{
-    height: 100vh;
-    background-image: url(../images/register-bg.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
+  height: 100vh;
+  background-image: url(../images/register-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+/* Remove spacing from thead */
+thead tr {
+  border-spacing: 0;
 }
